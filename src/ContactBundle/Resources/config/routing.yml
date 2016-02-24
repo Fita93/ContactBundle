@@ -1,0 +1,12 @@
+contact_homepage:
+    path:     /list
+    defaults: { _controller: ContactBundle:Default:view }
+contact_add:
+    path: /add
+    defaults : {_controller: ContactBundle:Default:add }
+contact_edit:
+    path: /edit/{id}
+    defaults : {_controller: ContactBundle:Default:edit }
+contact_delete :
+    path: /delete/{id}
+    defaults : {_controller: ContactBundle:Default:delete }

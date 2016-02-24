@@ -1,0 +1,46 @@
+{% extends "::layout.html.twig" %}
+
+{% block body %}
+<a class="btn btn-primary" href="{{ path('contact_add') }}">
+	<i class="glyphicon glyphicon-add"></i>
+	Ajouter
+</a>
+<table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Firstname</th>
+        <th>Lastname</th>
+		<th>Adresse</th>
+		<th>Telephone</th>
+        <th>Email</th>
+		<th>Site</th>
+		<th/>
+		<th/>
+      </tr>
+    </thead>
+    <tbody>
+		{% for contact in contacts %}
+      <tr>
+		<td>{{ contact.nom }}</td>
+		<td>{{ contact.prenom }}</td>
+		<td>{{ contact.adresse }}</td>
+		<td>{{ contact.telephone }}</td>
+		<td>{{ contact.email }}</td>
+		<td>{{ contact.site }}</td>
+		<td>
+		<a href="{{ path('contact_edit', {'id': contact.id}) }}" class="btn btn-default">
+			<i class="glyphicon glyphicon-edit"></i>
+			Modifier
+			</a>
+		</td>
+		<td>
+		<a href="{{ path('contact_delete', {'id': contact.id}) }}" class="btn btn-danger">
+			<i class="glyphicon glyphicon-trash"></i>
+			Supprimer
+		</a>
+		</td>
+	  </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

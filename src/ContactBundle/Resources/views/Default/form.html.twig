@@ -1,0 +1,51 @@
+<div class="container">
+	<div class="col-sm-offset-2">
+		<h2>Ajouter un contact</h2>
+	</div>
+
+	{{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+
+    {# Les erreurs générales du formulaire. #}
+    {{ form_errors(form) }}
+
+    <div class="form-group">
+  {{ form_row(form.nom, {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+  </div>
+
+    {# Idem pour un autre champ. #}
+    <div class="form-group">
+  {{ form_row(form.prenom, {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+  </div>
+
+  {# Génération du label + error + widget pour un champ #}
+  <div class="form-group">
+  {{ form_row(form.email, {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+  </div>
+  
+  <div class="form-group">
+  {{ form_row(form.adresse, {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+  </div>
+  
+  <div class="form-group">
+  {{ form_row(form.telephone, {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+  </div>
+  
+  <div class="form-group">
+  {{ form_row(form.site, {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+  </div>
+
+  {# Pour le bouton, pas de label ni d'erreur, on affiche juste le widget #}
+  <div class="form-group">
+	<div class="col-sm-offset-3">
+		{{ form_widget(form.envoyer, {'attr': {'class': 'btn btn-primary'}}) }}
+	</div>
+  </div>
+
+  {# Génération automatique des champs pas encore écrits.
+     Dans cet exemple, ce serait le champ CSRF (géré automatiquement par Symfony !)
+     et tous les champs cachés (type « hidden »). #}
+  {{ form_rest(form) }}
+  
+  {# Fermeture de la balise <form> du formulaire HTML #}
+  {{ form_end(form) }}
+</div>

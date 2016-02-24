@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>{% block title %}Contacts{% endblock %}</title>
+
+  {% block stylesheets %}
+    {# On charge le CSS de bootstrap depuis le site directement #}
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+  {% endblock %}
+</head>
+
+<body>
+	<nav class="navbar navbar-default" aria-labelledby="dLabel">
+		  {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+				<div class="dropdown pull-right">
+					<button class="btn btn-primary navbar-btn dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+					{{ app.user.username }}
+					<span class="caret"></span>
+				  </button>
+				  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+					<li>
+						<a href="{{ path('fos_user_security_logout') }}">
+						{{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+						</a>
+					</li>
+					<li>
+						<a href="{{ path('fos_user_profile_edit') }}">
+						Mon compte
+						</a>
+					</li>
+				  </ul>
+				</div>
+				</nav>
+				<div class="container">
+					<div id="header" class="jumbotron">
+						<h1>Mes contacts</h1>
+					</div>
+					<div class="row">      
+					  <div>
+						{% block body %}
+						{% endblock %}
+					  </div>
+					</div>
+                
+            {% else %}
+				<a class="btn btn-primary navbar-btn pull-right " href="{{ path('fos_user_registration_register') }}">{{ 'layout.register'|trans({}, 'FOSUserBundle') }}</a>
+                <a class="btn btn-primary navbar-btn pull-right" href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+	</nav>					
+          {% endif %}		  
+
+	<div class="container">
+
+    <hr>
+
+    <footer>
+      <p>The sky's the limit © {{ 'now'|date('Y') }} and beyond.</p>
+    </footer>
+  </div>
+
+  {% block javascripts %}
+    {# Ajoutez ces lignes JavaScript si vous comptez vous servir des fonctionnalités du bootstrap Twitter #}
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+  {% endblock %}
+
+</body>
+</html>
